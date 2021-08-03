@@ -38,3 +38,26 @@ void itoa(int num, char *number)
     number[dgcount] = '\0';
   }
 }
+
+int mstrcmp(const char* s1, const char* s2){
+	const char* p1 = s1;
+	const char* p2 = s2;
+	while(*p1 != 0 && *p2 != 0){
+		if(*p1 == *p2){
+			++p1;
+			++p2;
+		}else{
+			return 0;
+		}
+	}
+	if (*p1 == *p2) return 1;
+	return 0;
+}
+int in(char* what, char* where[], int size){
+	for(int idx = 0; idx < size; ++idx){
+		if(mstrcmp(what, where[idx]) == 1){
+			return 1;
+		}
+	}
+	return 0;
+}
