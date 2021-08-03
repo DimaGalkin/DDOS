@@ -11,7 +11,7 @@
 #include "lib/input.h"
 
 void cmd_init(){
-  cls_vga_buffer(&vga_buffer, stc_fg_col, stc_bg_col);
+  cls_vga_buffer(&vga_buffer, stc_fg_col, BLACK);
   static int i = 0; 
   char string[500];
   stc_bg_col = BLACK;
@@ -27,22 +27,12 @@ void cmd_init(){
 	print_nl();
   } 
   print_col("Kernel@C:\\> ", WHITE, BLACK);
-  pos_idx = 10;
+  pos_idx = 12;
   while(shutdown == 0){
 	sleep(sleep_time1);
 	test_input(string,500);
-	if(in(string,blocked,sfblocked)==0){
-		find_pkg_by_name(string)->f();
-		if(mstrcmp(string, "SHUTDOWN") == 1){
-			break;
-		}else if(mstrcmp(string, "EXIT") == 1){
-			exit_cmd();
-			break;
-		}else if(mstrcmp(string, "GU") == 1){
-			gui_init();
-		}
-	}
-	if(pos_idx > 10){
+
+	if(pos_idx > 12){
 		pos_idx = 0;
 		print_nl();
 		print_col("Kernel@C:\\> ", WHITE, BLACK);
@@ -53,14 +43,7 @@ void cmd_init(){
 void kernel_entry(){
   init_vga(WHITE, BLUE);
   while(shutdown == 0){
-  	while(gui == 0){
 	  cmd_init();
-	  gui = 1;
-  	}
-	while(gui == 1){
-		gui_init();
-	}
   }
   cls_vga_buffer(&vga_buffer, stc_fg_col, BLACK);
-  while(1){print("sh");}
 }

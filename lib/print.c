@@ -20,7 +20,7 @@ void print(char *str){
 
 void del_char()
 {
-  if(pos_idx > 10){
+  if(pos_idx > 12){
 	vga_buffer[vga_idx - 1] = vga_ipt(NULL, stc_fg_col, stc_bg_col);
 	vga_idx--;
 	pos_idx--;
