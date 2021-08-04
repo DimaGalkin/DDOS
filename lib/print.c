@@ -29,7 +29,7 @@ void del_char()
 
 void print_nl()
 {
-  if(nl_idx >= 55){
+  if(nl_idx >= 25){
     nl_idx = 0;
     cls_vga_buffer(&vga_buffer, stc_fg_col, stc_bg_col);
   }
