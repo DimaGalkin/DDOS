@@ -5,6 +5,7 @@
 
 extern char get_input_keycode();
 extern void test_input(char* string,int len);
+extern void pass_input(char* string,int len);
 extern byte arrows();
 
 

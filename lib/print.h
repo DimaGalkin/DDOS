@@ -4,6 +4,7 @@
 #include "types.h"
 
 extern void printc(char ch);
+extern void printc_no(char ch);
 extern void print(char *str);
 extern void del_char();
 extern void print_nl();
