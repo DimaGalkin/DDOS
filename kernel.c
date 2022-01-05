@@ -59,7 +59,7 @@ void kernel_entry(){
     gotocoord(11, 5);
     print("password: ");
     pass_input(string, 500);
-    if(mstrcmp(string, "POP606") == 1){
+    if(mstrcmp(string, "mypass") == 1){
       br = 1;
     }
   }
