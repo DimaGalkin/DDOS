@@ -9,6 +9,9 @@ int dgt_codes[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39}
 
 uint16* vga_buffer;
 
+uint8 text_color = RED;
+uint8 back_color = BLACK;
+
 uint16 vga_ipt(unsigned char ch, uint8 fg_col, uint8 bg_col){
 	uint16 ax = 0;
 	uint8 ah = 0, al = 0;

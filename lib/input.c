@@ -7,6 +7,9 @@
 #include "sleep.h"
 #include "vars.h"
 
+int shifted = 0;
+int hidden = 0;
+
 char get_input_keycode()
 {
   char ch = 0;
@@ -17,74 +20,37 @@ char get_input_keycode()
   return ch;
 }
 
-void test_input(char* string,int len)
+void input(char* string,int len)
 {
   char ch = 0;
   char keycode = 0;
   int numChars = 0;
   do{
+    if((inb(0x64) & 1) == 0) continue;
     keycode = get_input_keycode();
     if(keycode == KEY_ENTER){
-    		//enter = 1;
-		break;
-     }else if(keycode == KEY_BACKSPACE){
+		  break;
+    }else if(keycode == KEY_SHIFT){
+      if(shifted == 0){
+        shifted = 1;
+      }else{
+        shifted = 0;
+      }
+    }else if(keycode == KEY_BACKSPACE){
      	del_char();
      	string[numChars--] = NULL;
-    }else if(keycode == KEY_UP){
-    	arrow = 1;
-    	break;
-    }else if(keycode == KEY_DOWN){
-    	arrow = 2;
-    	break;
-    }else if(keycode == KEY_LEFT){
-    	arrow = 3;
-    	break;
-    }else if(keycode == KEY_RIGHT){
-    	arrow = 4;
-    	break;
     }else{
       ch = get_ascii_char(keycode);
-      printc(ch);
+      if(hidden == 1){
+        printc('*');
+      }else{
+        printc(ch);
+      }
       string[numChars++] = ch;
     }
-    sleep(sleep_time1);
-    //sleep(0x25FFFFFF);
-  }while(ch > 0 && numChars < len && pos_idx > 10);
-  string[numChars] = 0;
-}
-
-void pass_input(char* string,int len)
-{
-  char ch = 0;
-  char keycode = 0;
-  int numChars = 0;
-  do{
-    keycode = get_input_keycode();
-    if(keycode == KEY_ENTER){
-    		//enter = 1;
-		break;
-     }else if(keycode == KEY_BACKSPACE){
-     	del_char();
-     	string[numChars--] = NULL;
-    }else if(keycode == KEY_UP){
-    	arrow = 1;
-    	break;
-    }else if(keycode == KEY_DOWN){
-    	arrow = 2;
-    	break;
-    }else if(keycode == KEY_LEFT){
-    	arrow = 3;
-    	break;
-    }else if(keycode == KEY_RIGHT){
-    	arrow = 4;
-    	break;
-    }else{
-      ch = get_ascii_char(keycode);
-      printc('*');
-      string[numChars++] = ch;
+    if (keycode == KEY_ESC){
+      cls_vga_buffer(&vga_buffer, stc_fg_col, back_color);
     }
-    sleep(sleep_time1);
-    //sleep(0x25FFFFFF);
   }while(ch > 0 && numChars < len && pos_idx > 10);
   string[numChars] = 0;
 }

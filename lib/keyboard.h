@@ -3,7 +3,7 @@
 
 #define KEYBOARD_PORT 0x60
 
-
+#define KEY_SHIFT 0x2A
 #define KEY_A 0x1E
 #define KEY_B 0x30
 #define KEY_C 0x2E
@@ -62,27 +62,25 @@
 #define KEY_F11 0x85
 #define KEY_F12 0x86
 #define KEY_BACKSPACE 0x0E
-#define KEY_DELETE 0x53
-#define KEY_DOWN 0x50
-#define KEY_END 0x4F
+//#define KEY_DELETE 0x53
+//#define KEY_DOWN 0x50
+//#define KEY_END 0x4F
 #define KEY_ENTER 0x1C
 #define KEY_ESC 0x01
-#define KEY_HOME 0x47
-#define KEY_INSERT 0x52
-#define KEY_KEYPAD_5 0x4C
-#define KEY_KEYPAD_MUL 0x37
-#define KEY_KEYPAD_Minus 0x4A
-#define KEY_KEYPAD_PLUS 0x4E
-#define KEY_KEYPAD_DIV 0x35
-#define KEY_LEFT 0x4B
-#define KEY_PAGE_DOWN 0x51
-#define KEY_PAGE_UP 0x49
-#define KEY_PRINT_SCREEN 0x37
-#define KEY_RIGHT 0x4D
+//#define KEY_HOME 0x47
+//#define KEY_INSERT 0x52
+//#define KEY_KEYPAD_5 0x4C
+//#define KEY_KEYPAD_MUL 0x37
+//#define KEY_KEYPAD_Minus 0x4A
+//#define KEY_KEYPAD_PLUS 0x4E
+//#define KEY_KEYPAD_DIV 0x35
+//#define KEY_LEFT 0x4B
+//#define KEY_PAGE_DOWN 0x51
+//#define KEY_PAGE_UP 0x49
+//#define KEY_PRINT_SCREEN 0x37
+//#define KEY_RIGHT 0x4D
 #define KEY_SPACE 0x39
-#define KEY_TAB 0x0F
-#define KEY_UP 0x48
-
+//#define KEY_TAB 0x0F
+//#define KEY_UP 0x48
 
 #endif
-
