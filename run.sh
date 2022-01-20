@@ -43,6 +43,12 @@ sleep 0.1
 echo -ne '<############                  (36%)>\r'
 
 gcc -m32 -c lib/draw.c -o draw.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+
+sleep 0.1
+echo -ne '<###############               (40%)>\r'
+
+gcc -m32 -c lib/ascii.c -o ascii.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+
 sleep 0.1
 echo -ne '<################              (48%)>\r'
 
@@ -74,7 +80,7 @@ sleep 0.1
 echo -ne '<#############################(100%)>\r'
 
 #linking the kernel with kernel.o and boot.o files
-ld -m elf_i386 -T linker.ld kernel.o utils.o boot.o io.o vars.o vga.o char.o draw.o input.o print.o sleep.o memlib.o  -o Kernel.bin -nostdlib
+ld -m elf_i386 -T linker.ld kernel.o utils.o boot.o io.o vars.o vga.o char.o draw.o input.o print.o sleep.o memlib.o ascii.o -o Kernel.bin -nostdlib
 
 #check Kernel.bin file is x86 multiboot file or not
 grub-file --is-x86-multiboot Kernel.bin

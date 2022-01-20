@@ -24,6 +24,7 @@ void del_char()
 	vga_buffer[vga_idx - 1] = vga_ipt(NULL, stc_fg_col, stc_bg_col);
 	vga_idx--;
 	pos_idx--;
+	ipt_idx--;
   }
 }
 

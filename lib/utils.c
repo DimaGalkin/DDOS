@@ -20,6 +20,14 @@ uint32 digit_count(int num)
   return count;
 }
 
+uint32 pow(uint32 num1, uint32 num2) {
+  for(uint32 i = 0; i < num2; ++i) {
+    num1 = num1 * num2;
+  }
+
+  return num1;
+}
+
 void itoa(int num, char *number)
 {
   int dgcount = digit_count(num);

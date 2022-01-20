@@ -11,6 +11,7 @@
 #include "lib/draw.h"
 #include "lib/input.h"
 #include "lib/memlib.h"
+#include "lib/acsii.h"
 
 //define the initialisation function for the CLI
 void cmd_init(){
@@ -31,10 +32,31 @@ void cmd_init(){
     // see if we entered the clear command
     if(mstrcmp(string, "CLEAR") == 1){
         cls_vga_buffer(&vga_buffer, stc_fg_col, back_color);
-    } else if(mstrcmp(string, "mem-write")){
-      uint8 chunk[1024];
-      mem_chunk_read(chunk, 0, 2);
-      for(uint32 i = 0; i < 2; ++i){print_int(chunk[i]); print_nl();}
+    } else if(mstrcmp(string, "mem-write") == 1){
+      print_nl();
+      print("Program Name: ");
+      string[0] = NULL;
+      while(string[0] == NULL){input(string, 500);}
+      
+      char str[500];
+
+      for(uint32 i = 0; i < strlen(string); ++i) {
+        str[i] = string[i];
+      }
+      print_nl();
+      print("Data: ");
+      string[0] = NULL;
+      while(string[0] == NULL){input(string, 500);}
+      mem_write(string[0], str);
+
+    } else if(mstrcmp(string, "mem-read") == 1){
+      print_nl();
+      print("Program Name: ");
+      string[0] = NULL;
+      while(string[0] == NULL){input(string, 500);}
+
+      print_nl();
+      printc(mem_read(string));
     }
 
     // check cursor position

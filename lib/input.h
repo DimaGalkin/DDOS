@@ -10,5 +10,6 @@ extern void pass_input(char* string,int len);
 extern byte arrows();
 extern int hidden;
 extern int shifted;
+extern int ipt_idx;
 
 #endif

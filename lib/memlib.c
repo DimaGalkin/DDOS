@@ -1,89 +1,83 @@
 #include "memlib.h"
 
 uint16* memory_buffer;
+uint16* system_memory_buffer;
 int mem_idx;
+int sys_mem_idx;
 
-// uint16* memory_buffer;
-// memory_buffer = (uint16*)MEMORY_START;
-// memory_buffer[0] = 12;
-// print_int(memory_buffer[0]);
+struct memory_address_table {
+  int memory_idx;
+  char process_name[64];
+};
 
-// static const uint32 MY_DATA_SIZE = 256;
-// uint32 a1[MY_DATA_SIZE];
-// uint32 a2[MY_DATA_SIZE];
+struct free_memory_locator {
+  int isfree;
+  int address;
+  int proccess_code;
+};
 
-// for(uint32 i = 0; i<MY_DATA_SIZE; ++i)
-// {
-// a1[0] = i;
-// }
+struct memory_address_table memory_lookup_table[MEMORY_LENGTH];
+struct free_memory_locator memory_ownership_table[MEMORY_LENGTH];
 
-// uint8* psrc = (uint8*)(a1);
-// uint8* pdst = (uint8*)uint16* memory_buffer;
-// memory_buffer = (uint16*)MEMORY_START;
-// memory_buffer[0] = 12;
-// print_int(memory_buffer[0]);
+char mem_read(char* p_name){
+    int mem_dx = 0;
+    for(int i = 0; i < MEMORY_LENGTH; ++i) {
+      if(mstrcmp(memory_lookup_table[i].process_name, p_name) == 1) {
+        mem_dx = memory_lookup_table[i].memory_idx; 
+        break;
+      }
+    }
 
-// static const uint32 MY_DATA_SIZE = 256;
-// uint32 a1[MY_DATA_SIZE];
-// uint32 a2[MY_DATA_SIZE];
+    uint8 data_t = memory_buffer[mem_dx];
+    char data = ASCIItoChar(data_t);
+    return data;
+}
 
-// for(uint32 i = 0; i<MY_DATA_SIZE; ++i)
-// {
-// a1[0] = i;
-// }
+void mem_write(char data_char, char* prog_name){
 
-// uint8* psrc = (uint8*)(a1);
-// uint8* pdst = (uint8*)(a2);
+  uint8 data = charToASCII(data_char);
 
-// for(uint32 i = 0; i<MY_DATA_SIZE * sizeof(uint32); ++i)
-// {
-// *pdst = *psrc;
-// psrc++;
-// pdst++;
-// }
+  for (uint32 i = 0; i < strlen(prog_name); ++i) {
+    memory_lookup_table[mem_idx].process_name[i] = prog_name[i];
+  }
+  memory_lookup_table[mem_idx].memory_idx = mem_idx;
 
-// for(uint32 i = 0; i<MY_DATA_SIZE; ++i)
-// {
-// if(a1[i] != a2[i])
-//     print("DATA MISMATCH!");
-// }(a2);
-
-//       for(uint32 i = 0; i<MY_DATA_SIZE * sizeof(uint32); ++i)
-//       {
-//         *pdst = *psrc;
-//         psrc++;
-//         pdst++;
-//       }
-
-//       for(uint32 i = 0; i<MY_DATA_SIZE; ++i)
-//       {
-//         if(a1[i] != a2[i])
-//           print("DATA MISMATCH!");
-//       }
+  memory_buffer[mem_idx] = data;
+  mem_idx++;
+}
 
 void init_memlib() {
-    mem_idx = 0;
     memory_buffer = (uint16*)MEMORY_START;
-}
-
-void mem_write(int index, uint8 data) {
-    memory_buffer[index] = data;
-    mem_idx++;
-}
-
-uint8 mem_read(int index) {
-    return memory_buffer[index];
-}
-
-int mem_chunk_read(uint8 chunk[1024], int chunk_start, int chunk_end) {
-    if(chunk_start > chunk_end) {
-        return 1;
+    system_memory_buffer = (uint16*)SYSTEM_MEMORY_START;
+    for(int i = 0; i < MEMORY_LENGTH + 1; ++i) {
+        memory_buffer[i] = NULL;
+        system_memory_buffer[i] = NULL;
+        memory_ownership_table[i].isfree = 1;
+        memory_ownership_table[i].address = i;      
     }
+    mem_idx = 0;
+}
 
-    int x = 0;
-    for(int i = chunk_start; i < chunk_end + 1; ++i) {
-        chunk[x] = mem_read(i);
-        ++x;
+int sys_mem_write(int index, uint8 data) {
+    system_memory_buffer[index] = data;
+    sys_mem_idx++;
+    return sys_mem_idx;
+}
+
+uint8 sys_mem_read(int index) {
+    return system_memory_buffer[index];
+}
+
+int memory_write(char* string) {
+  int free_addressi[MEMORY_LENGTH];
+  int address_pointer = 0;
+  for(int i = 0; i < strlen(string); ++i) {
+    for(int x = 0; x < MEMORY_LENGTH; ++x) {
+      if (memory_ownership_table[x].isfree == 1) {
+        free_addressi[address_pointer] = x;
+        address_pointer++;
+        break;
+      }
     }
-    return 0;
+  }
 }

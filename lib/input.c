@@ -7,6 +7,7 @@
 #include "sleep.h"
 #include "vars.h"
 
+int ipt_idx = 0;
 int shifted = 0;
 int hidden = 0;
 
@@ -29,6 +30,7 @@ void input(char* string,int len)
     if((inb(0x64) & 1) == 0) continue;
     keycode = get_input_keycode();
     if(keycode == KEY_ENTER){
+      string[numChars++] = '\0';
 		  break;
     }else if(keycode == KEY_SHIFT){
       if(shifted == 0){
@@ -41,6 +43,7 @@ void input(char* string,int len)
      	string[numChars--] = NULL;
     }else{
       ch = get_ascii_char(keycode);
+      ++ipt_idx;
       if(hidden == 1){
         printc('*');
       }else{

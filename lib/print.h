@@ -2,6 +2,7 @@
 #define PRINT_H
 
 #include "types.h"
+#include "input.h"
 
 extern void printc(char ch);
 extern void printc_no(char ch);
