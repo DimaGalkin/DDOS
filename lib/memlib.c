@@ -67,17 +67,3 @@ int sys_mem_write(int index, uint8 data) {
 uint8 sys_mem_read(int index) {
     return system_memory_buffer[index];
 }
-
-int memory_write(char* string) {
-  int free_addressi[MEMORY_LENGTH];
-  int address_pointer = 0;
-  for(int i = 0; i < strlen(string); ++i) {
-    for(int x = 0; x < MEMORY_LENGTH; ++x) {
-      if (memory_ownership_table[x].isfree == 1) {
-        free_addressi[address_pointer] = x;
-        address_pointer++;
-        break;
-      }
-    }
-  }
-}
