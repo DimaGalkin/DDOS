@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"input.h": "c",
+			"memlib.h": "c"
+		}
+	}
+}

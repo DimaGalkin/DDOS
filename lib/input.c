@@ -39,8 +39,10 @@ void input(char* string,int len)
         shifted = 0;
       }
     }else if(keycode == KEY_BACKSPACE){
-     	del_char();
-     	string[numChars--] = NULL;
+      if (pos_idx > 12) {
+     	  del_char();
+     	  string[numChars--] = NULL;
+      }
     }else{
       ch = get_ascii_char(keycode);
       ++ipt_idx;

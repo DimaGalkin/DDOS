@@ -10,4 +10,3 @@ int arrow = 40;
 int volume = 0;
 int shutdown = 0;
 int gui = 0;
-uint16 *backup_vga_buffer;

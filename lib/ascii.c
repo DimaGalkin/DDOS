@@ -228,3 +228,35 @@ uint32 charsToInt(char* charachters) {
 
     return result;
 }
+
+void lower(char* name) {
+    for(uint16 i = 0; i < strlen(name); ++i) {
+        char str[2] = {name[i], 'E'};
+        if(mstrcmp(str, "AE") == 1) {name[i] = 'a';}
+        else if(mstrcmp(str, "BE") == 1) {name[i] = 'b';}
+        else if(mstrcmp(str, "CE") == 1) {name[i] = 'c';}
+        else if(mstrcmp(str, "DE") == 1) {name[i] = 'd';}
+        else if(mstrcmp(str, "EE") == 1) {name[i] = 'e';}
+        else if(mstrcmp(str, "FE") == 1) {name[i] = 'f';}
+        else if(mstrcmp(str, "GE") == 1) {name[i] = 'g';}
+        else if(mstrcmp(str, "HE") == 1) {name[i] = 'h';}
+        else if(mstrcmp(str, "IE") == 1) {name[i] = 'i';}
+        else if(mstrcmp(str, "JE") == 1) {name[i] = 'j';}
+        else if(mstrcmp(str, "KE") == 1) {name[i] = 'k';}
+        else if(mstrcmp(str, "LE") == 1) {name[i] = 'l';}
+        else if(mstrcmp(str, "ME") == 1) {name[i] = 'm';}
+        else if(mstrcmp(str, "NE") == 1) {name[i] = 'n';}
+        else if(mstrcmp(str, "OE") == 1) {name[i] = 'o';}
+        else if(mstrcmp(str, "PE") == 1) {name[i] = 'p';}
+        else if(mstrcmp(str, "QE") == 1) {name[i] = 'q';}
+        else if(mstrcmp(str, "RE") == 1) {name[i] = 'r';}
+        else if(mstrcmp(str, "SE") == 1) {name[i] = 's';}
+        else if(mstrcmp(str, "TE") == 1) {name[i] = 't';}
+        else if(mstrcmp(str, "UE") == 1) {name[i] = 'u';}
+        else if(mstrcmp(str, "VE") == 1) {name[i] = 'v';}
+        else if(mstrcmp(str, "WE") == 1) {name[i] = 'w';}
+        else if(mstrcmp(str, "XE") == 1) {name[i] = 'x';}
+        else if(mstrcmp(str, "YE") == 1) {name[i] = 'y';}
+        else if(mstrcmp(str, "ZE") == 1) {name[i] = 'z';}
+    }
+}
