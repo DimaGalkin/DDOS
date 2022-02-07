@@ -7,7 +7,8 @@
 	"settings": {
 		"files.associations": {
 			"input.h": "c",
-			"memlib.h": "c"
+			"memlib.h": "c",
+			"sound.h": "c"
 		}
 	}
 }
