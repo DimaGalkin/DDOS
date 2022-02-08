@@ -105,4 +105,4 @@ cd ..
 rm -fr build
 
 #run it in qemu-system
-qemu-system-x86_64 -cdrom Kernel.iso
+qemu-system-x86_64 -device intel-hda -cdrom Kernel.iso

@@ -3,7 +3,7 @@
 
 #include "vga.h"
 #include "acsii.h"
-#include "memlib.h"
+#include "sound.h"
 
 extern int packages_call(char* name);
 
