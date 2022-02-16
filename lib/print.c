@@ -25,8 +25,23 @@ void del_char()
 	vga_idx--;
 	pos_idx--;
 	ipt_idx--;
+  } else {
+	  print_bnl();
   }
 }
+
+void del_char_idx(int idx)
+{
+  if(pos_idx > 12){
+	vga_buffer[idx] = vga_ipt(NULL, stc_fg_col, stc_bg_col);
+	vga_idx--;
+	pos_idx--;
+	ipt_idx--;
+  } else {
+	  print_bnl();
+  }
+}
+
 
 void print_nl()
 {
@@ -36,6 +51,14 @@ void print_nl()
   }
   vga_idx = 80*nl_idx;
   nl_idx++;
+}
+
+void print_bnl()
+{
+  if(nl_idx > 0){
+	vga_idx = 80 / nl_idx;
+	nl_idx--;
+  }
 }
 
 void print_col(char* str, uint8 fg_col, uint8 bg_col){
@@ -49,6 +72,17 @@ void print_col(char* str, uint8 fg_col, uint8 bg_col){
 		printc(str[index]);
 		index++;
 	}
+	stc_fg_col = fc;
+	stc_bg_col = bc;
+}
+
+void printc_col(char str, uint8 fg_col, uint8 bg_col){
+	uint8 fc, bc;
+	fc = stc_fg_col;
+	bc = stc_bg_col;
+	stc_fg_col = fg_col;
+	stc_bg_col = bg_col;
+	printc(str);
 	stc_fg_col = fc;
 	stc_bg_col = bc;
 }
@@ -70,6 +104,14 @@ void print_coord(char* str, uint16 x, uint16 y, uint8 ff, uint8 bb){
 	vga_idx = 80*y;
     vga_idx += x;
 	print_col(str,ff,bb);
+	vga_idx = old_idx;
+
+}
+
+void printc_coord(char str, uint8 ff, uint8 bb, uint32 vga_dx){
+	uint32 old_idx = vga_idx;
+    vga_idx = vga_dx;
+	printc_col(str,ff,bb);
 	vga_idx = old_idx;
 
 }

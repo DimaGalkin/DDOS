@@ -3,7 +3,9 @@
 
 #include "vga.h"
 #include "acsii.h"
-#include "sound.h"
+#include "memlib.h"
+#include "utils.h"
+#include "editor.h"
 
 extern int packages_call(char* name);
 

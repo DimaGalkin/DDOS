@@ -50,8 +50,3 @@ hltLoop:
 	jmp hltLoop
 
 .size _start, . - _start
-
-
-
-
-

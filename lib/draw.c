@@ -15,6 +15,7 @@ uint16 box_draw_char(uint8 chn, uint8 fg_col, uint8 bg_col){
 }
 
 void gotocoord(uint16 x, uint16 y){
+	nl_idx += y;
 	vga_idx = 80*y;
 	vga_idx += x;
 }

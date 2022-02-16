@@ -42,3 +42,12 @@ void init_vga(uint8 fg_col, uint8 bg_col){
 	outb(0x3D4, 0x0A);
 	outb(0x3D5, 0x20);
 }
+
+void enable_cursor(uint8 cursor_start, uint8 cursor_end)
+{
+	outb(0x3D4, 0x0A);
+	outb(0x3D5, (inb(0x3D5) & 0xC0) | cursor_start);
+ 
+	outb(0x3D4, 0x0B);
+	outb(0x3D5, (inb(0x3D5) & 0xE0) | cursor_end);
+}

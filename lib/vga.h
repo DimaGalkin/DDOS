@@ -11,7 +11,6 @@ extern int dgt_codes[10];
 extern uint16 vga_ipt(unsigned char ch, uint8 fg_col, uint8 bg_col);
 extern void cls_vga_buffer(uint16 **buffer, uint8 fg_col, uint8 bg_col);
 extern void init_vga(uint8 fg_col, uint8 bg_col);
-
 extern uint16* vga_buffer;
 extern uint16* backup_vga_buffer;
 

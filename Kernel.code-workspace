@@ -8,7 +8,17 @@
 		"files.associations": {
 			"input.h": "c",
 			"memlib.h": "c",
-			"sound.h": "c"
+			"sound.h": "c",
+			"vars.h": "c",
+			"print.h": "c",
+			"vga.h": "c",
+			"array": "c",
+			"memory": "c",
+			"functional": "c",
+			"tuple": "c",
+			"utility": "c",
+			"utils.h": "c",
+			"string": "c"
 		}
 	}
 }

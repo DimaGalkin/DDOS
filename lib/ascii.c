@@ -220,14 +220,14 @@ uint8 charToInt(char charachter) {
     }
 }
 
-uint32 charsToInt(char* charachters) {
-    uint32 result = 0;
-    for (uint32 i = 0; i < strlen(charachters); ++i) {
-        result += (charToInt(charachters[strlen(charachters) - i]) * (pow(10, i)));
-    }
+// uint32 charsToInt(char* charachters) {
+//     uint32 result = 0;
+//     for (uint32 i = 0; i < strlen(charachters); ++i) {
+//         result += charsToInt(charachters[i]) * (10)
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 void lower(char* name) {
     for(uint16 i = 0; i < strlen(name); ++i) {
