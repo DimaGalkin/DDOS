@@ -1,5 +1,7 @@
 #include "utils.h"
 
+char DDOS_VERSION[6] = "v1.0.0";
+
 uint32 strlen(const char* str)
 {
   uint32 length = 0;

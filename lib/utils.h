@@ -11,6 +11,7 @@ extern void itoa(int, char *);
 extern int in(char* what, char* where[], int size);
 extern int mstrcmp(const char* s1, const char* s2);
 extern uint32 pow(uint32 num1, uint32 num2);
+extern char DDOS_VERSION[6];
 
 #endif
 

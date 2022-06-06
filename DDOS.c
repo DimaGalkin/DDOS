@@ -4,6 +4,9 @@
 #include "lib/print.h"
 #include "lib/memlib.h"
 #include "lib/kpm.h"
+#include "lib/draw.h"
+#include "lib/types.h"
+#include "lib/utils.h"
 
 // define the CLI
 void CLI(){
@@ -15,6 +18,13 @@ void CLI(){
   
   // clear display and print
   cls_vga_buffer(&vga_buffer, stc_fg_col, back_color);
+  draw_box(BOX_DOUBLELINE, 4, 0, 70, 4, WHITE, back_color);
+  gotocoord(24,1);
+  print_col("This is the DDOS operating system!", text_color, back_color);
+  gotocoord(32,3);
+  print_col("Version ", text_color, back_color);
+  print_col(DDOS_VERSION, text_color, back_color);
+  gotocoord(0,6);
   print_col("DDOS@C:\\> ", text_color, back_color);
   
   // make a loop in which the DDOS stay in until we are done 
@@ -49,7 +59,7 @@ void CLI(){
 }
 
 // this is our main function which starts everything 
-void DDOS_entry(){
+void DDOS(){
   // initialiase display adapter
   init_vga(text_color, back_color);
   // initialize the memory library
