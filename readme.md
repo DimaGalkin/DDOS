@@ -1,4 +1,6 @@
-# Kernel
+# DDOS
+DDOS - Dima's Disk Operating System
+
 ## Requierments
 Linux (the commands listed bellow are for ubuntu & debian)
 

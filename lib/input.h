@@ -7,7 +7,6 @@
 
 extern char get_input_keycode();
 extern void input(char* string,int len);
-extern int input_text(char* string, int len, int deleteTable, int arraySize, int vgaTable);
 extern byte arrows();
 extern int hidden;
 extern int shifted;

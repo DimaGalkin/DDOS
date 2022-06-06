@@ -37,8 +37,8 @@ _start:
   # assign current stack pointer location to stackTop
 	mov $stackTop, %esp
 
-  # call the kernel main function
-	call kernel_entry
+  # call the DDOS main function
+	call DDOS_entry
 
 	cli
 

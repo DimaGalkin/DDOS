@@ -14,8 +14,8 @@ as --32 boot.s -o boot.o
 sleep 0.1
 echo -ne '<##                            (6%)>\r'
 
-#compile kernel.c file
-gcc -m32 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+#compile DDOS.c file
+gcc -m32 -c DDOS.c -o DDOS.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
 gcc -m32 -c lib/io.c -o io.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
@@ -37,36 +37,32 @@ gcc -m32 -c lib/utils.c -o utils.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
 gcc -m32 -c lib/memlib.c -o memlib.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
-gcc -m32 -c lib/sound.c -o sound.o -std=gnu99 -ffreestanding -O1 -Wall
-
 gcc -m32 -c lib/vars.c -o vars.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
 gcc -m32 -c lib/kpm.c -o kpm.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
 
-gcc -m32 -c lib/editor.c -o editor.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+#linking the DDOS with DDOS.o and boot.o files
+ld -m elf_i386 -T linker.ld DDOS.o utils.o boot.o io.o vars.o vga.o char.o draw.o input.o print.o sleep.o memlib.o ascii.o kpm.o  -o DDOS.bin -nostdlib
 
-#linking the kernel with kernel.o and boot.o files
-ld -m elf_i386 -T linker.ld kernel.o utils.o boot.o io.o vars.o vga.o char.o draw.o input.o print.o sleep.o memlib.o ascii.o kpm.o sound.o editor.o -o Kernel.bin -nostdlib
-
-#check Kernel.bin file is x86 multiboot file or not
-grub-file --is-x86-multiboot Kernel.bin
+#check DDOS.bin file is x86 multiboot file or not
+grub-file --is-x86-multiboot DDOS.bin
 
 #building the iso file
 mkdir -p isodir/boot/grub
-cp Kernel.bin isodir/boot/Kernel.bin
+cp DDOS.bin isodir/boot/DDOS.bin
 cp grub.cfg isodir/boot/grub/grub.cfg
-grub-mkrescue -o Kernel.iso isodir
+grub-mkrescue -o DDOS.iso isodir
 
 
 echo "Removing the build enviroment"
 echo ""
 echo -ne '<                        (0%)>\r'
-#cp Kernel.iso /run/user/1000/gvfs/smb-share:server=dimlap.local,share=isoserverdrop
-cp Kernel.iso ..
+#cp DDOS.iso /run/user/1000/gvfs/smb-share:server=dimlap.local,share=isoserverdrop
+cp DDOS.iso ..
 echo -ne '<#############################(100%)>\r'
 echo ""
 cd ..
 rm -fr build
 
 #run it in qemu-system
-qemu-system-x86_64 -device intel-hda -cdrom Kernel.iso
+qemu-system-x86_64 -cdrom DDOS.iso
