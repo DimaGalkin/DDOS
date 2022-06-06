@@ -2,8 +2,8 @@ clear
 
 mkdir build
 cd ..
-cp -a Kernel/* Kernel/build 2>/dev/null || :
-cd Kernel
+cp -a DDOS/* DDOS/build 2>/dev/null || :
+cd DDOS
 cd build
 
 echo "Compiling the project"
