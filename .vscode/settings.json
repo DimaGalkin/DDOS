@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "utils.h": "c",
+        "print.h": "c",
+        "acsii.h": "c",
+        "keyboard.h": "c",
+        "vga.h": "c",
+        "sstream": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
+    }
+}
