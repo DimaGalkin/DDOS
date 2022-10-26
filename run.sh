@@ -1,4 +1,5 @@
 clear
+clear
 
 echo "Creating build enviroment"
 echo -ne '\n'
