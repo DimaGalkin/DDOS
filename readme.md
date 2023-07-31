@@ -21,3 +21,5 @@ To compile the projects you need to do `sudo apt install build-essential`, `sudo
 ----------------------
 ## Executables
 
+// NOTE:
+please excuse the bad code, i wrote this when i was 14
