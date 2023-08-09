@@ -15,11 +15,6 @@ To compile the projects you need to do `sudo apt install build-essential`, `sudo
 3. go to the command prompt and change the current working directory to the location of the source code
 4. run the sh file `./run.sh`
 5. this will run the iso file in an emulator but if you want the iso file it will be in the same place as the sh file.
-## Commpiler
-----------------------
-## File System
-----------------------
-## Executables
 
-// NOTE:
-please excuse the bad code, i wrote this when i was 14
+### NOTE:
+> Please excuse the bad code, I wrote this when I was 14
